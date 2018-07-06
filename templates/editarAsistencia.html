@@ -1,0 +1,43 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+	<h3><b><div class="well well-sm">Asistencia ⁞ {{fecha}}</div></b></h3>
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-hover">
+	<thread>
+		<tr>
+			<th scope="col">Nombre</th>
+			<td >Estado</td>
+		</tr>
+	</thread>
+	<tbody>
+		{% if asistencias %}
+		{% for asistencia in asistencias %}
+		<tr class="table-info">
+			<th scope="row">{{ asistencia.usuario.nombre}} {{ asistencia.usuario.apellido}}</th>
+			{% if asistencia.asistio %}
+			<td>
+				<a class="btn btn-success" href="{% url 'asistio' asistencia.id %}">Presente</a> 
+			</td>
+			{% else %}
+			<td>
+				<a class="btn btn-danger" href="{% url 'asistio' asistencia.id %}">Ausente</a>
+			</td>
+			{% endif %}
+		</tr>
+
+		{% endfor %}
+
+		{% else %}
+		<h1>no hay registros de programas</h1>
+
+		{% endif %}
+	</tbody>
+</table>
+
+{% endblock %}
+
+

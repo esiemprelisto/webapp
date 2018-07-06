@@ -1,0 +1,55 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+	<h3><b><div class="well well-sm">Puntajes de la Actividad ⁞ {{titulo}}</div></b></h3>
+{% endblock %}
+
+{% block content %}
+
+ <form method ="post">
+	{% csrf_token %}
+	{{ form }}
+	<button type ="submit" class="btn btn-primary">Agregar</button>
+</form>
+<br></br>
+
+
+<table class="table table-bordered">
+	<thread>
+		<tr>
+			<td>Patrullas/Puntaje</td>
+			{% for pun in maximoP %}
+				<td>P</td>
+			{% endfor %}
+			<td>Total</td>
+		</tr>
+	</thread>
+	<tbody>
+		{% if patrullas %}
+		{% for patrulla in patrullas %}
+		<tr>
+			<td>{{ patrulla.nombre }}</td>
+			{% for puntaje in puntajes %}
+				{% if puntaje.patrulla == patrulla %}
+					<td>{{ puntaje.puntos}}</td>
+				{% endif %}
+			{% endfor %}
+
+
+			{% for total in totales %}
+					{% if total.patrulla == patrulla %}
+						<td>{{ total.puntos}}</td>
+					{% endif %}
+			{% endfor %}
+		</tr>
+
+		{% endfor %}
+
+		{% else %}
+		<h1>no hay registros de programas</h1>
+
+		{% endif %}
+	</tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+	<b><div class="well well-sm"Eliminar Programas</div></b>
+{% endblock %}
+
+{% block content %}
+
+ <form method ="post">
+	{% csrf_token %}
+	<h3>¿Desea elimar el registro de la Linea de programa?</h3>
+	<button type ="submit" class="btn btn-danger">si, eliminar</button>
+	<a class = "btn btn-default" href="{% url 'listaProgramas' %}">Cancelar</a>
+</form>
+<br></br>
+
+{% endblock %}

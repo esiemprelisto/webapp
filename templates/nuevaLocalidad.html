@@ -1,0 +1,25 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+
+	{% for localidad in localidades %}
+	<h2>{{localidad.nombre}}</h2>
+	<h5>Provincia: {{localidad.provincia}}</h5>
+	<h5>Fundacion: {{localidad.fundacion}}</h5>
+	<hr/>
+	{% endfor %}
+<hr/>
+<h3>Agregar Localidad Scout</b></h3>
+
+{% endblock %}
+
+{% block content %}
+
+ <form method ="post">
+	{% csrf_token %}
+	{{ form }}
+	<button type ="submit" class="btn btn-primary">Agregar</button>
+</form>
+<br></br>
+
+{% endblock %}

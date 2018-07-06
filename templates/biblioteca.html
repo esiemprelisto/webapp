@@ -1,0 +1,26 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+
+{% endblock %}
+
+{% block content %}
+
+
+<b><h1>Biblioteca Scout</h1></b>
+<hr/>
+{% if categorias %}
+	{% for categoria in categorias %}
+		<b><h4><a href="{% url 'verCategoria' categoria.id %}">{{categoria.nombre}}</a></h4></b>
+		<h5><p align="justify">{{categoria.descripcion}}</p></h5>
+		<hr/>
+	{% endfor %}
+
+{% else %}
+	<h3>No hay registros.</h3>
+{% endif %}		
+
+
+
+
+{% endblock %}

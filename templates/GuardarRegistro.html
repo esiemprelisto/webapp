@@ -1,0 +1,17 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+	<h1>{{tl}}</b></h1>
+	<br></br>
+{% endblock %}
+
+{% block content %}
+
+ <form method ="post">
+	{% csrf_token %}
+	{{ form }}
+	<button type ="submit" class="btn btn-primary">Agregar</button>
+</form>
+<br></br>
+
+{% endblock %}

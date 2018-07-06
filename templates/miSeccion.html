@@ -1,0 +1,45 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+
+{% endblock %}
+
+{% block content %}
+
+
+<h1>Sección <b>{{seccion}}</b></h1>
+
+<hr/>
+{% if patrullas %}
+	{% for patrulla in patrullas %}
+		<b><h3>{{patrulla.nombre}}</h3></b>
+		<h6>Fundación: {{patrulla.fundacion}}</h6>
+
+		{% for beneficiario in beneficiarios %}
+			{% if beneficiario.Patrulla == patrulla %}
+				<div style="padding-left:50px;"><b><h4><a href="{% url 'editarUsuario' beneficiario.id %}">{{beneficiario.nombre}} {{beneficiario.apellido}}</a></h4></b></div>
+				<div style="padding-left:50px;"><h6>{{beneficiario.nombreApoderado}}</h6></div>
+			{% endif %}
+		{% endfor %}
+
+		<hr/>
+	{% endfor %}
+	<b><h3>Beneficiarios sin Patrulla Asignada</h3></b>
+	{% for beneficiario in beneficiarios %}
+		{% if beneficiario.Patrulla == null %}
+			<div style="padding-left:50px;"><b><h4><a href="{% url 'editarUsuario' beneficiario.id %}">{{beneficiario.nombre}} {{beneficiario.apellido}}</a></h4></b></div>
+			<div style="padding-left:50px;"><h6>{{beneficiario.nombreApoderado}}</h6></div>
+		{% endif %}
+	{% endfor %}
+	<br></br>
+
+{% else %}
+	<h3>No hay registros.</h3>
+{% endif %}		
+
+
+
+
+
+
+{% endblock %}

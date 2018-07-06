@@ -1,0 +1,53 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+	<b><div class="well well-sm">Datos Generales</div></b>
+{% endblock %}
+
+{% block content %}
+
+ <form method ="post">
+	{% csrf_token %}
+	{{ form }}
+	<button type ="submit" class="btn btn-primary">Editar Datos Generales</button>
+</form>
+<br></br>
+<b><div class="well well-sm">Actividades</div></b>
+
+<table class="table table-bordered">
+	<thread>
+		<tr>
+			<td>#</td>
+			<td>Hora</td>
+			<td>Duración</td>
+			<td>Nombre</td>
+			<td>Descripción</td>
+			<td>Encargado</td>
+			<td>Materiales</td>
+			<td>Observación</td>
+		</tr>
+	</thread>
+	<tbody>
+		{% if lineas %}
+		{% for linea in lineas %}
+		<tr>
+			<td>{{ linea.id}}</td>
+			<td>{{ linea.hora}}</td>
+			<td>{{ linea.duracion}}</td>
+			<td>{{ linea.nombre}}</td>
+			<td>{{ linea.descripcion}}</td>
+			<td>{{ linea.encargado}}</td>
+			<td>{{ linea.materiales}}</td>
+			<td>{{ linea.observacion}}</td>
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>no hay registros de actividades</h1>
+
+		{% endif %}
+	</tbody>
+</table>
+
+
+{% endblock %}

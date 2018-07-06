@@ -1,0 +1,16 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+	<b><div class="well well-sm">Datos de la Linea de la Actividad</div></b>
+{% endblock %}
+
+{% block content %}
+
+ <form method ="post">
+	{% csrf_token %}
+	{{ form }}
+	<button type ="submit" class="btn btn-primary">Editar Actividad</button>
+</form>
+<br></br>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+	<b><div class="well well-sm">Datos Generales</div></b>
+  	
+  	<table class="table table-bordered">
+	<thread>
+		<tr>
+			<td>Fecha</td>
+			<td>Lugar</td>
+			<td>Observación</td>
+		</tr>
+	</thread>
+	<tbody>
+		<tr>
+			<td>{{ programa.fecha}}</td>
+			<td>{{ programa.lugar}}</td>
+			<td>{{ programa.observacion}}</td>
+		</tr>
+	</tbody>
+</table>
+<a class="btn btn-primary" href="{% url 'editarPrograma' programa.id %}">Editar Datos</a>
+<br></br>
+
+{% endblock %}
+
+{% block content %}
+
+<b><div class="well well-sm">Actividades</div></b>
+
+<table class="table table-bordered">
+	<thread>
+		<tr>
+			<td>#</td>
+			<td>Hora</td>
+			<td>Duración</td>
+			<td>Nombre</td>
+			<td>Descripción</td>
+			<td>Encargado</td>
+			<td>Materiales</td>
+			<td>Observación</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</thread>
+	<tbody>
+		{% if lineas %}
+		{% for linea in lineas %}
+		<tr>
+			<td>{{ linea.id}}</td>
+			<td>{{ linea.hora}}</td>
+			<td>{{ linea.duracion}}</td>
+			<td>{{ linea.nombre}}</td>
+			<td>{{ linea.descripcion}}</td>
+			<td>{{ linea.encargado}}</td>
+			<td>{{ linea.materiales}}</td>
+			<td>{{ linea.observacion}}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'nuevoPuntaje' linea.id %}">Puntajes</a>
+				
+			</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'editarLineaPrograma' linea.id %}">Editar</a>
+				
+			</td>
+			<td>
+				<a class="btn btn-danger" href="{% url 'eliminarLineaPrograma' linea.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>no hay registros de actividades</h1>
+
+		{% endif %}
+	</tbody>
+</table>
+
+<b><div class="well well-sm">Agregar Actividad</div></b>
+<form method ="post">
+	{% csrf_token %}
+	{{ form }}
+	<button type ="submit" class="btn btn-primary">Agregar</button>
+</form>
+<br></br>
+
+{% endblock %}

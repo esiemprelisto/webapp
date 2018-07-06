@@ -1,0 +1,17 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+	<b><div class="well well-sm">Ficha de Progresion</div></b>
+	<a class="btn btn-default" href="{% url 'editarUsuario' iduser %}">Volver</a>
+{% endblock %}
+
+{% block content %}
+
+ <form method ="post">
+	{% csrf_token %}
+	{{ form }}
+	<button type ="submit" class="btn btn-primary">Actualizar</button>
+</form>
+<br></br>
+
+{% endblock %}

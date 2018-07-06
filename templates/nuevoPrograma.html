@@ -1,0 +1,19 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+	<b><div class="well well-sm">Agregar Programas</div></b>
+{% endblock %}
+
+{% block content %}
+
+ <form method ="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type ="submit" class="btn btn-primary">Nuevo Programa</button>
+</form>
+<br></br>
+
+
+
+
+{% endblock %}

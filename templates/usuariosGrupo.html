@@ -1,0 +1,62 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+
+{% endblock %}
+
+{% block content %}
+
+<br></br>
+<b><div class="well well-sm">Miembros del Grupo</div></b>
+<table class="table table-bordered">
+	<thread>
+		<tr>
+			<td>Nombre</td>
+			<td>Seccion</td>
+			<td>Seisena/Patrulla/Equipo</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</thread>
+	<tbody>
+		{% if usuarios %}
+		{% for usuario in usuarios %}
+		<tr>
+			<td>{{ usuario.nombre}} {{usuario.apellido}}</td>
+			<td>{{ usuario.Seccion}}</td>
+			<td>{{ usuario.Patrulla}}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'editarUsuario' usuario.id %}">Ver</a> 
+			</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'editarDatosPadre' usuario.dp.id %}">F. Padres</a>
+			</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'editarDatosApoderado' usuario.da.id %}">F. Apoderado</a> 
+			</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'editarDatosMedicos' usuario.dm.id %}">F. Medica</a>
+			</td>
+			<td>
+				<a class="btn btn-success" href="{% url 'verCurriculum' usuario.id %}">C. Scout</a> 
+			</td>
+			<td>
+			<a class="btn btn-info" href="{% url 'verEtapaProgresion' usuario.id %}">Progresion</a>
+			</td>
+		</tr>
+
+		{% endfor %}
+
+		{% else %}
+		<h1>no hay registros de programas</h1>
+
+		{% endif %}
+	</tbody>
+</table>
+
+
+{% endblock %}

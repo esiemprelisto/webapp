@@ -1,0 +1,46 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+
+<br></br>
+<h1>Mi Ficha de Progresion</h1>
+<table class="table table-bordered">
+	<thread>
+		<tr>
+			<td>Descripcion</td>
+			<td>Estado</td>
+			<td>Documento</td>
+		</tr>
+	</thread>
+	<tbody>
+		{% if pruebas %}
+		{% for prueba in pruebas %}
+		<tr>
+			<td>{{ prueba.descripcion}}</td>
+			{% if prueba.estado == 1 %}
+				<td>Aprobada</td>
+			{% endif %}
+			{% if prueba.estado == 0 %}
+				<td>No Rendida</td>
+			{% endif %}
+			<td><a class="btn btn-primary" href="{% url 'cambiarUrl' prueba.url %}">Ver Documento</a></td>
+		</tr>
+
+		{% endfor %}
+
+		{% else %}
+		<h1>no hay registros de pruebas</h1>
+
+		{% endif %}
+	</tbody>
+</table>
+
+
+{% endblock %}

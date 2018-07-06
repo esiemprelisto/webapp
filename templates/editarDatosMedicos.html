@@ -1,0 +1,18 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+	<h1>Datos Medicos ⁞ {{nombreB}}</b></h1>
+	<a class="btn btn-default" href="{% url 'editarUsuario' iduser %}">Volver</a>
+	<br></br>
+{% endblock %}
+
+{% block content %}
+
+ <form method ="post">
+	{% csrf_token %}
+	{{ form }}
+	<button type ="submit" class="btn btn-primary">Editar Datos</button>
+</form>
+<br></br>
+
+{% endblock %}

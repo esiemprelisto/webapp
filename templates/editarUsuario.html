@@ -1,0 +1,30 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+<h1>{{nombreB}}</b></h1>
+<br></br>
+{% endblock %}
+
+{% block content %}
+<b><div class="well well-sm">Fichas Complementarias</div></b>
+<a class="btn btn-primary" href="{% url 'editarDatosPadre' iddp %}">Ficha Padres</a>
+<a class="btn btn-primary" href="{% url 'editarDatosApoderado' idda %}">Ficha Apoderado</a> 
+<a class="btn btn-primary" href="{% url 'editarDatosMedicos' iddm %}">Ficha Medica</a>
+<a class="btn btn-primary" href="{% url 'verCurriculum' iduser %}">Curriculum Scout</a> 
+<a class="btn btn-primary" href="{% url 'verEtapaProgresion' iduser %}">Etapa Progresion</a> 
+<br></br>
+
+
+<link href="/media/css/forms.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../../../jsi18n/"></script>
+<script type="text/javascript" src="/media/admin/js/core.js"></script>
+<script type="text/javascript" src="/media/admin/js/calendar.js"></script>
+<script type="text/javascript" src="/media/admin/js/admin/DateTimeShortcuts.js"></script>
+ <form method ="post">
+	{% csrf_token %}
+	{{ form }}
+	<button type ="submit" class="btn btn-primary">Editar</button>
+</form>
+<br></br>
+
+{% endblock %}

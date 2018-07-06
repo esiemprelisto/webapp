@@ -1,0 +1,42 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+	<b><div class="well well-sm">Secciones del Grupo Scout</div></b>
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thread>
+		<tr>
+			<td>Nombre</td>
+			<td>Fecha de Fundacion</td>
+		</tr>
+	</thread>
+	<tbody>
+		{% if secciones %}
+		{% for sec in secciones %}
+		<tr>
+			<td>{{ sec.nombre}}</td>
+			<td>{{ sec.fundacion}}</td>
+		</tr>
+
+		{% endfor %}
+
+		{% else %}
+		<h1>no hay registros de programas</h1>
+
+		{% endif %}
+	</tbody>
+</table>
+
+<br></br>
+<h1>Agregar Seccion</h1>
+ <form method ="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type ="submit" class="btn btn-primary">Agregar</button>
+</form>
+<br></br>
+
+{% endblock %}

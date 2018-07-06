@@ -1,0 +1,152 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+ {% block extrahead %}
+ {% endblock %}
+ 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
+ 
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" crossorigin="anonymous">
+ 
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+ <title>{% block title %} E-Siempre Listo {% endblock %} </title>
+</head>
+
+<body>
+
+ <div class="container">
+
+{% block navbar %}
+    <div class="bs-docs-section clearfix">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-component">
+                 <nav class="navbar navbar-default">
+                     <div class="container-fluid">
+                        <div class="navbar-header">
+                          <a class="navbar-brand" href="{% url 'menu' %}">Inicio</a>
+                        </div>
+                       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                         <ul class="nav navbar-nav">
+                         	{% if usuario.tipoScout.id == 1%}
+                         	{% if usuario.tipoDirigente.id != 1%}
+                         	{% if usuario.nivelCuenta.id != 1 %}
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Programas<span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                               <li><a href="{% url 'nuevoProgramas' %}">Nuevo Programa</a></li>
+                               <li><a href="{% url 'listaProgramas' %}">Mis Programas</a></li>
+                              </ul>
+                            </li>
+                             <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestion de Grupo<span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                                 <li><a href="{% url 'miSeccion' %}">Mi Sección</a></li>
+                                 <li><a href="{% url 'nuevoUsuario' %}">Nuevo Miembro</a></li>
+                              </ul>
+                             </li>
+                             {% endif %}
+                             {% endif %}
+                             {% endif %}
+                             {% if usuario.tipoScout.id == 2 %}
+                             {% if usuario.nivelCuenta.id != 1 %}
+                             <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Progresion<span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                               <li><a href="{% url 'verMiProgresion' %}">Mi Ficha de Progresion</a></li>
+                               <li><a href="{% url 'verMiProgresion' %}">Especialidades</a></li>
+                              </ul>
+                            </li>
+                            {% endif %}
+                            {% endif %}
+                            {% if usuario.tipoDirigente.id == 1 %}
+                            {% if usuario.nivelCuenta.id != 1 %}
+                             <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Agregar Usuario<span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                               <li><a href="{% url 'nuevoDirigente' %}">Agregar Dirigente</a></li>
+                               <li><a href="{% url 'nuevoBeneficiario' %}">Agregar Beneficiario</a></li>
+                               <li><a href="{% url 'verMiProgresion' %}">Agregar Apoderado</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestion Grupo<span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                               <li><a href="{% url 'listaProgramasGrupo' %}">Ver Pogramas</a></li>
+                               <li><a href="{% url 'usuariosGrupo' %}">Miembros del Grupo</a></li>
+                               <li><a href="{% url 'verMiProgresion' %}">Calendario Anual</a></li>
+                               <li><a href="{% url 'nuevaNoticia' %}">Agregar Noticia</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Configurar Grupo<span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                               <li><a href="{% url 'verSecciones' %}">Ver Secciones</a></li>
+                               <li><a href="{% url 'verPatrullas' %}">Ver Seisenas/Patrullas/Equipos</a></li>
+                              </ul>
+                            </li>
+                            {% endif %}
+                            {% endif %}
+                            {% if usuario.nivelCuenta.id == 1 %}
+                             <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestionar Sistema<span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                              	<li><a href="{% url 'nuevaNoticiaNN' %}">Agregar Noticia</a></li>
+                               <li><a href="{% url 'nuevaProvincia' %}">Provincias Scout</a></li>
+                               <li><a href="{% url 'nuevaLocalidad' %}">Localidades Scout</a></li>
+                               <li><a href="{% url 'nuevoGrupo' %}">Grupos Scout</a></li>
+                              </ul>
+                            </li>
+                            {% endif %}
+                         </ul>
+                         <ul class="nav navbar-nav navbar-right">
+                             <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opciones<span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                                 <li><a href="{% url 'editarPassword' %}">Mi Contraseña</a></li>
+                                 <li><a href="{% url 'logout' %}">Salir</a></li>
+                              </ul>
+                            </li>
+                         </ul>
+                         <ul class="nav navbar-nav navbar-right">
+                             <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Biblioteca<span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                                 <li><a href="{% url 'biblioteca' %}">Documentos</a></li>
+                              </ul>
+                            </li>
+                         </ul>
+                    </div>
+                </nav>
+            </div>
+              </div>
+          </div>
+      </div>
+
+Bienvenido <b>{{usuario.nombre}} {{usuario.apellido}},</b>	
+    {% block footer %}
+  			titulo de la seccion
+ 		{% endblock %}
+
+    {% block content %}
+  		Esté es el contenido del archivo base.
+ 	{% endblock %}
+
+{% endblock %}
+
+</div>
+
+ {% block extrajs %}
+ {% endblock %}
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>

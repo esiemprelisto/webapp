@@ -1,0 +1,27 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+
+{% endblock %}
+
+{% block content %}
+
+
+<b><h1>Biblioteca Scout</h1></b>
+<a class = "btn btn-default" href="{% url 'biblioteca' %}">Volver</a>
+<hr/>
+{% if archivos %}
+	{% for archivo in archivos %}
+		<b><h4><a href={{archivo.urlArchivo}}>{{archivo.nombre}}</a></h4></b>
+		<h5><p align="justify">{{archivo.descripcion}}</p></h5>
+		<hr/>
+	{% endfor %}
+
+{% else %}
+	<h3>No hay registros.</h3>
+{% endif %}		
+
+
+
+
+{% endblock %}

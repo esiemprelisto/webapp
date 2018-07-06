@@ -1,0 +1,52 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+
+<br></br>
+<b><div class="well well-sm">Programas</div></b>
+<table class="table table-bordered">
+	<thread>
+		<tr>
+			<td>Seccion</td>
+			<td>Fecha</td>
+			<td>Lugar</td>
+			<td>Observaciones</td>
+			<td></td>
+			<td></td>
+		</tr>
+	</thread>
+	<tbody>
+		{% if programas %}
+		{% for programa in programas %}
+		<tr>
+			<td>{{ programa.Seccion}}</td>
+			<td>{{ programa.fecha}}</td>
+			<td>{{ programa.lugar}}</td>
+			<td>{{ programa.observacion}}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'verPrograma' programa.id %}">Ver</a> 
+			</td>
+			<td>
+				<a class="btn btn-success" href="{% url 'editarAsistencia' programa.id %}">Asistencia</a>
+			</td>
+			</td>
+		</tr>
+
+		{% endfor %}
+
+		{% else %}
+		<h1>no hay registros de programas</h1>
+
+		{% endif %}
+	</tbody>
+</table>
+
+
+{% endblock %}

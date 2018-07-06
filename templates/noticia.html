@@ -1,0 +1,29 @@
+{% extends 'menuDirigente.html' %}	
+
+{% block footer %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="list-group">
+  <a href="#" class="list-group-item active"><b><h3>{{noticia.titulo}}</h3></b></a>
+    <a href="#" class="list-group-item"><h5><b>{{noticia.user}}</b> ⁞ {{noticia.fecha}}</h5><h4><p align="justify"> {{noticia.body}}</p></h4></a>
+  	{% for pregunta in preguntas %}
+  		{% if pregunta.Noticia == noticia %}
+  			<a href="#" class="list-group-item"><h5><b>{{pregunta.user}}</b></h5><h4><p align="justify"> {{pregunta.pregunta}} ⁞ Respuesta: {{pregunta.respuesta}}</p></h4></a>
+  		{% endif %}
+  	{% endfor %}
+    <a href="#" class="list-group-item">
+      <form method ="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type ="submit" class="btn btn-primary">Preguntar o Comentar</button>
+      </form>
+    </a>
+		</div>
+
+
+
+
+{% endblock %}

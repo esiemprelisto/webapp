@@ -1,0 +1,66 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+
+{% endblock %}
+
+{% block content %}
+
+<br></br>
+
+
+<b><h1>Curriculum Scout</h1></b>
+<hr/>
+<a class="btn btn-default" href="{% url 'editarUsuario' iduser %}">Volver</a>
+
+<h3><b><div class="well well-sm">Etapas de Progresión</div></b></h3>
+
+	{% for curri in curris %}
+		{% if curri.categoria_id == 1 %}
+			<div style="padding-left:50px;"><h4><b>{{curri.suceso}}</b></h4></div>
+			<div style="padding-left:50px;"><h6>{{curri.fecha}} ⁞ {{curri.descripcion}}</h6></div>
+		{% endif %}
+	{% endfor %}
+
+<hr/>
+
+<h3><b><div class="well well-sm">Cursos Aprobados</div></b></h3>
+
+	{% for curri in curris %}
+		{% if curri.categoria_id == 4 %}
+			<div style="padding-left:50px;"><h4><b>{{curri.suceso}}</b></h4></div>
+			<div style="padding-left:50px;"><h6>{{curri.fecha}} ⁞ {{curri.descripcion}}</h6></div>
+		{% endif %}
+	{% endfor %}
+
+<hr/>
+
+<h3><b><div class="well well-sm">Paso de Sección</div></b></h3>
+
+	{% for curri in curris %}
+		{% if curri.categoria_id == 2 %}
+			<div style="padding-left:50px;"><h4><b>{{curri.suceso}}</b></h4></div>
+			<div style="padding-left:50px;"><h6>{{curri.fecha}} ⁞ {{curri.descripcion}}</h6></div>
+		{% endif %}
+	{% endfor %}
+
+<hr/>
+
+<h3><b><div class="well well-sm">Asistencia a Eventos</div></b></h3>
+
+	{% for curri in curris %}
+		{% if curri.categoria_id == 3 %}
+			<div style="padding-left:50px;"><h4><b>{{curri.suceso}}</b></h4></div>
+			<div style="padding-left:50px;"><h6>{{curri.fecha}} ⁞ {{curri.descripcion}}</h6></div>
+		{% endif %}
+	{% endfor %}
+
+<hr/>
+<h3><b><div class="well well-sm">Agregar Suceso</div></b></h3>
+<form method ="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type ="submit" class="btn btn-primary">Agregar Registro</button>
+</form>
+<br></br>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'menuDirigente.html' %}
+
+{% block footer %}
+
+
+
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<h3>Agregar Grupo Scout</b></h3>
+ <form method ="post" class="form-horizontal">
+	{% csrf_token %}
+	{{ form }}
+	<button type ="submit" class="btn btn-primary">Agregar</button>
+</form>
+<br></br>
+<hr/>
+	{% for grupo in grupos %}
+		<div class="alert alert-success" role="alert"><h2>{{grupo.nombre}}</h2>
+		<h5>Localidad: {{grupo.localidad}} ⁞ Fundacion: {{grupo.fundacion}}</h5> </div> 
+	{% endfor %}
+<hr/>
+
+{% endblock %}

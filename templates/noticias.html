@@ -1,0 +1,39 @@
+{% extends 'menuDirigente.html' %}	
+
+{% block footer %}
+
+{% endblock %}
+
+{% block content %}
+
+<br></br>
+
+<div class="alert alert-dismissible alert-success">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>E-Siempre Listo es una herramienta, que busca reducir la utilizacion de papel en la actividades y gestion realizada por los Dirigentes Scout.</strong> ¿Sabias que... Reciclar 1 tonelada de papel de periódico ahorra hasta 4.000 Kwh de electricidad?, suficiente para abastecer una casa de 3 habitaciones durante todo un año. O que 7.000 eriódicos ó una tonelada de papel equivale a 3 m3 de madera, es decir, a 13 árboles de tamaño medio
+</div>
+
+
+
+<b><h1>Noticias</h1></b>
+<hr/>
+{% if noticias %}
+	{% for noticia in noticias %}
+		<div class="list-group">
+  			<a href="{% url 'preguntaNoticia' noticia.id %}" class="list-group-item active"><b><h3>{{noticia.titulo}}  ⁞ {{noticia.user}}</h3></b><h4> {{noticia.fecha}} ⁞ {{noticia.body}}</h4></a>
+  			{% for pregunta in preguntas %}
+  				{% if pregunta.Noticia == noticia %}
+  					<a href="{% url 'respuestaNoticia' pregunta.id %}" class="list-group-item"><h5><b>{{pregunta.user}}</b></h5><h4><p align="justify"> {{pregunta.pregunta}} ⁞ Respuesta: {{pregunta.respuesta}}</p></h4></a>
+  				{% endif %}
+  			{% endfor %}
+		</div>
+	{% endfor %}
+
+{% else %}
+	<h1>no hay registros de noticias</h1>
+{% endif %}		
+
+
+
+
+{% endblock %}
